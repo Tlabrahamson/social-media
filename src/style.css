@@ -1,5 +1,7 @@
 :root {
   --transition: all 0.4s ease;
+  --nav-color: #4e0374;
+  --darkest-color: #3e0b57;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -48,6 +50,15 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.page {
+  padding: 1rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
 /* NAVBAR */
 
 #header {
@@ -55,7 +66,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #310945;
+  background: var(--nav-color);
+}
+
+#header div {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
 }
 
 #header .title {
@@ -71,7 +88,7 @@ body {
 
 #header .auth-options button {
   padding: 0 1rem;
-  background-color: #230632;
+  background-color: var(--darkest-color);
   color: #fff;
   font-size: 1.1rem;
   outline: none;
@@ -81,6 +98,69 @@ body {
 #header .auth-options button:hover {
   background-color: #5a2376;
 }
+
+/* FORM */
+.form label,
+.form input {
+  display: block;
+}
+
+.form input {
+  margin-bottom: 1rem;
+}
+
+.form label {
+  margin-bottom: 0.2rem;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.3rem;
+  border: solid 1px #c2c2c2;
+  background: #eee;
+  border-radius: 8px;
+}
+
+.form input:focus {
+  border: solid 1px #2199df;
+  box-shadow: inset 0px 0px 5px hsl(202, 75%, 50%, 0.5);
+  outline: none;
+}
+
+.form input[type="submit"] {
+  padding: 0.3rem 0.5rem;
+  border: solid 1px #230632;
+  border-radius: 8px;
+  background: var(--nav-color);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* ERROR NOTICE */
+
+.error-notice {
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: solid 1px #cb4f4f;
+  background: #e89494;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-notice button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #cb4f4f;
+  color: #fff;
+}
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width: 550px) {
   #header .title {
