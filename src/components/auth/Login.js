@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../../components/misc/ErrorNotice";
@@ -36,27 +36,34 @@ export default function Login() {
 
   return (
     <div className="page">
-      <h2>Login</h2>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-      <form className="form" onSubmit={submit}>
-        <label htmlFor="login-email">Email</label>
-        <input
-          id="login-email"
-          type="email"
-          onChange={e => setEmail(e.target.value)}
-        />
+      <div className="profile-card">
+        <h2>Login</h2>
+        {error && (
+          <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        )}
+        <form className="form" onSubmit={submit}>
+          <label htmlFor="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            autoComplete="off"
+            onChange={e => setEmail(e.target.value)}
+          />
 
-        <label htmlFor="login-password">Password</label>
-        <input
-          id="login-password"
-          type="password"
-          onChange={e => setPassword(e.target.value)}
-        />
+          <label htmlFor="login-password">Password</label>
+          <input
+            id="login-password"
+            type="password"
+            autoComplete="off"
+            onChange={e => setPassword(e.target.value)}
+          />
 
-        <input type="submit" value="Login" />
-      </form>
+          <input type="submit" value="Login" />
+        </form>
+        <p>
+          Don't have an account yet? <Link to="register">Register!</Link>
+        </p>
+      </div>
     </div>
   );
 }

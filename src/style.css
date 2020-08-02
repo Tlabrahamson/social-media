@@ -1,7 +1,7 @@
 :root {
   --transition: all 0.4s ease;
-  --nav-color: #4e0374;
-  --darkest-color: #3e0b57;
+  --nav-color: #683fb5;
+  --darkest-color: #4e2f88;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -54,6 +54,13 @@ body {
   padding: 1rem;
 }
 
+.profile-card {
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+
 .container {
   margin: 0 auto;
   max-width: 900px;
@@ -88,7 +95,6 @@ body {
 
 #header .auth-options button {
   padding: 0 1rem;
-  background-color: var(--darkest-color);
   color: #fff;
   font-size: 1.1rem;
   outline: none;
@@ -96,7 +102,7 @@ body {
 }
 
 #header .auth-options button:hover {
-  background-color: #5a2376;
+  background-color: var(--darkest-color);
 }
 
 /* FORM */
@@ -137,6 +143,11 @@ body {
   background: var(--nav-color);
   color: #fff;
   font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.form input[type="submit"]:hover {
+  background: var(--darkest-color);
 }
 
 /* ERROR NOTICE */

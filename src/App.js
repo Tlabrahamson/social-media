@@ -1,12 +1,17 @@
+// React
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Axios from "axios";
+// Components
 import Navbar from "./components/layout/Navbar";
+// Pages
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import EditUserProfile from "./components/pages/EditUserProfile";
+// Context
 import UserContext from "./context/UserContext";
-
+// Stylesheet
 import "./style.css";
 
 export default function App() {
@@ -51,6 +56,7 @@ export default function App() {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/edit-profile" component={EditUserProfile} />
             </Switch>
           </div>
         </UserContext.Provider>

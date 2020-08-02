@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
+import Avatar from "../../images/default-avatar.png";
 
 export default function Home() {
   const { userData } = useContext(UserContext);
@@ -9,6 +10,24 @@ export default function Home() {
   useEffect(() => {
     if (!userData.user) history.push("/login");
   });
-
-  return <h2 className="page">Welcome</h2>;
+  if (userData.user) {
+    return (
+      <div className="page">
+        <div className="profile-card">
+          <h2>Welcome back, {userData.user.displayName}</h2>
+          <img src={Avatar} alt="Avatar" />
+          <h3>{userData.user.userBio}</h3>
+          <p>
+            We are going to get some stuff cooking here in a bit. For now, how
+            about editing your <Link to="edit-profile">profile?</Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="page">
+      <h2>Welcome</h2>
+    </div>
+  );
 }
