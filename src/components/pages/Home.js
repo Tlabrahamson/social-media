@@ -15,7 +15,7 @@ export default function Home() {
       <div className="page">
         <div className="profile-card">
           <h2>Welcome back, {userData.user.displayName}</h2>
-          <img src={Avatar} alt="Avatar" />
+          <img className="avatar" src={Avatar} alt="Avatar" />
           <h3>{userData.user.userBio}</h3>
           <p>
             We are going to get some stuff cooking here in a bit. For now, how

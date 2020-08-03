@@ -50,8 +50,19 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.center-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circ-progress {
+  color: var(--nav-color) !important;
+}
+
 .page {
-  padding: 1rem;
+  padding: 2rem 1rem;
 }
 
 .profile-card {
@@ -59,6 +70,10 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 1rem 2rem;
+}
+
+.profile-card .avatar {
+  max-width: 100px;
 }
 
 .container {
@@ -74,6 +89,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background: var(--nav-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 #header div {
@@ -121,7 +137,8 @@ body {
 
 .form input[type="text"],
 .form input[type="email"],
-.form input[type="password"] {
+.form input[type="password"],
+.form textarea {
   width: 100%;
   font-size: 1.1rem;
   padding: 0.3rem;
@@ -148,6 +165,20 @@ body {
 
 .form input[type="submit"]:hover {
   background: var(--darkest-color);
+}
+
+.drop-zone {
+  padding: 1rem 0;
+}
+
+.file-drop {
+  border: dashed 2px #c2c2c2;
+  width: 200px;
+  height: 100px;
+  padding: 1rem 0.2rem;
+  text-align: center;
+  background: #eee;
+  cursor: pointer;
 }
 
 /* ERROR NOTICE */

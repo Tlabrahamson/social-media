@@ -45,6 +45,7 @@ export default function Login() {
           <label htmlFor="login-email">Email</label>
           <input
             id="login-email"
+            placeholder="Your email address"
             type="email"
             autoComplete="off"
             onChange={e => setEmail(e.target.value)}
@@ -53,6 +54,7 @@ export default function Login() {
           <label htmlFor="login-password">Password</label>
           <input
             id="login-password"
+            placeholder="Your password"
             type="password"
             autoComplete="off"
             onChange={e => setPassword(e.target.value)}

@@ -52,6 +52,7 @@ export default function Register() {
           <label htmlFor="register-email">Email</label>
           <input
             id="register-email"
+            placeholder="user@email.com"
             type="email"
             autoComplete="off"
             onChange={e => setEmail(e.target.value)}
@@ -60,6 +61,7 @@ export default function Register() {
           <label htmlFor="register-password">Password</label>
           <input
             id="register-password"
+            placeholder="Password"
             type="password"
             autoComplete="off"
             onChange={e => setPassword(e.target.value)}
@@ -74,6 +76,7 @@ export default function Register() {
           <label htmlFor="register-display-name">Display Name</label>
           <input
             id="register-display-name"
+            placeholder="Johno Jenkins"
             type="text"
             autoComplete="off"
             onChange={e => setDisplayName(e.target.value)}

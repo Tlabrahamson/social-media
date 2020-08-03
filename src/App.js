@@ -13,12 +13,15 @@ import EditUserProfile from "./components/pages/EditUserProfile";
 import UserContext from "./context/UserContext";
 // Stylesheet
 import "./style.css";
+// MUI
+import { CircularProgress } from "@material-ui/core";
 
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -43,10 +46,15 @@ export default function App() {
       }
     };
 
+    setIsLoading(false);
     checkLoggedIn();
   }, []);
 
-  return (
+  return isLoading === true ? (
+    <div className="center-progress">
+      <CircularProgress className="circ-progress" />
+    </div>
+  ) : (
     <>
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
