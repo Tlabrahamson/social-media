@@ -46,8 +46,8 @@ export default function App() {
       }
     };
 
-    setIsLoading(false);
     checkLoggedIn();
+    setIsLoading(false);
   }, []);
 
   return isLoading === true ? (

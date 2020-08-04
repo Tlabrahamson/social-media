@@ -1,21 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import Dropzone from "react-dropzone";
+import ErrorNotice from "../../components/misc/ErrorNotice";
 
 export default function EditUserProfile() {
   const { userData } = useContext(UserContext);
+  const [displayName, setDisplayName] = useState("");
+  const [userBio, setUserBio] = useState("");
+  const [error, setError] = useState();
 
-  const submit = async e => {
-    e.preventDefault();
+  const submit = e => {
     try {
       const updateUser = {
-        displayName: userData.user.displayName,
-        userBio: userData.user.userBio
+        displayName,
+        userBio
       };
-      await Axios.post("http://localhost:5000/users/edit-profile", updateUser);
+      Axios.post("http://localhost:5000/users/update", updateUser);
     } catch (err) {
-      console.log(err);
+      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -24,13 +27,25 @@ export default function EditUserProfile() {
       <div className="page">
         <div className="profile-card">
           <h2>{userData.user.displayName}, care to edit some things?</h2>
-
+          {error && (
+            <ErrorNotice
+              message={error}
+              clearError={() => setError(undefined)}
+            />
+          )}
           <form className="form" onSubmit={submit}>
             <label htmlFor="display-name">Change your display name:</label>
-            <input type="text" placeholder={userData.user.displayName} />
+            <input
+              type="text"
+              placeholder={userData.user.displayName}
+              onChange={e => setDisplayName(e.target.value)}
+            />
 
             <label htmlFor="bio">Update your Bio:</label>
-            <textarea placeholder={userData.user.userBio} />
+            <textarea
+              placeholder={userData.user.userBio}
+              onChange={e => setUserBio(e.target.value)}
+            />
 
             <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
               {({ getRootProps, getInputProps }) => (

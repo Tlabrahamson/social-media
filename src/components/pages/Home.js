@@ -1,17 +1,26 @@
-import React, { useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Avatar from "../../images/default-avatar.png";
+// MUI
+import { CircularProgress } from "@material-ui/core";
 
 export default function Home() {
   const { userData } = useContext(UserContext);
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!userData.user) history.push("/login");
-  });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   if (userData.user) {
-    return (
+    return isLoading === true ? (
+      <div className="center-progress">
+        <CircularProgress className="circ-progress" />
+      </div>
+    ) : (
       <div className="page">
         <div className="profile-card">
           <h2>Welcome back, {userData.user.displayName}</h2>
@@ -27,7 +36,7 @@ export default function Home() {
   }
   return (
     <div className="page">
-      <h2>Welcome</h2>
+      <h2>Welcome to Social Butterfly!</h2>
     </div>
   );
 }
