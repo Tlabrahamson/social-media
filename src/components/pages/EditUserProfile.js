@@ -1,25 +1,41 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-import Dropzone from "react-dropzone";
 import ErrorNotice from "../../components/misc/ErrorNotice";
+// Component
+import ImageDrop from "../../components/layout/ImageDrop";
+// Test image
+import Avatar from "../../images/default-avatar.png";
 
 export default function EditUserProfile() {
   const { userData } = useContext(UserContext);
   const [displayName, setDisplayName] = useState("");
   const [userBio, setUserBio] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [error, setError] = useState();
 
-  const submit = e => {
+  const submit = async e => {
+    e.preventDefault();
     try {
       const updateUser = {
         displayName,
-        userBio
+        userBio,
+        avatar
       };
-      Axios.post("http://localhost:5000/users/update", updateUser);
+
+      if (updateUser.displayName === "") {
+        updateUser.displayName = userData.user.displayName;
+      }
+      if (updateUser.userBio === "") {
+        updateUser.userBio = userData.user.userBio;
+      }
+
+      await Axios.post("http://localhost:5000/users/update", updateUser);
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
+    await alert("Profile updated!");
+    window.location.reload();
   };
 
   if (userData.user) {
@@ -47,16 +63,8 @@ export default function EditUserProfile() {
               onChange={e => setUserBio(e.target.value)}
             />
 
-            <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-              {({ getRootProps, getInputProps }) => (
-                <section className="drop-zone">
-                  <div className="file-drop" {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>Drag a file here, or click to browse</p>
-                  </div>
-                </section>
-              )}
-            </Dropzone>
+            <ImageDrop imageSource={Avatar} />
+
             <input type="submit" value="Update" />
           </form>
         </div>

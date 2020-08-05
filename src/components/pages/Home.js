@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-import Avatar from "../../images/default-avatar.png";
 // MUI
 import { CircularProgress } from "@material-ui/core";
 
@@ -24,7 +23,7 @@ export default function Home() {
       <div className="page">
         <div className="profile-card">
           <h2>Welcome back, {userData.user.displayName}</h2>
-          <img className="avatar" src={Avatar} alt="Avatar" />
+          <img className="avatar" src={userData.user.avatar} alt="Avatar" />
           <h3>{userData.user.userBio}</h3>
           <p>
             We are going to get some stuff cooking here in a bit. For now, how
