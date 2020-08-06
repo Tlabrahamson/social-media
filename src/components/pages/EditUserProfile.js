@@ -2,10 +2,6 @@ import React, { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../../components/misc/ErrorNotice";
-// Component
-import ImageDrop from "../../components/layout/ImageDrop";
-// Test image
-import Avatar from "../../images/default-avatar.png";
 
 export default function EditUserProfile() {
   const { userData } = useContext(UserContext);
@@ -29,6 +25,9 @@ export default function EditUserProfile() {
       if (updateUser.userBio === "") {
         updateUser.userBio = userData.user.userBio;
       }
+      if (updateUser.avatar === "") {
+        updateUser.avatar = userData.user.avatar;
+      }
 
       await Axios.post("http://localhost:5000/users/update", updateUser);
     } catch (err) {
@@ -49,7 +48,13 @@ export default function EditUserProfile() {
               clearError={() => setError(undefined)}
             />
           )}
-          <form className="form" onSubmit={submit}>
+          <form
+            method="POST"
+            action="/upload"
+            className="form"
+            onSubmit={submit}
+            encType="multipart/form-data"
+          >
             <label htmlFor="display-name">Change your display name:</label>
             <input
               type="text"
@@ -63,7 +68,14 @@ export default function EditUserProfile() {
               onChange={e => setUserBio(e.target.value)}
             />
 
-            <ImageDrop imageSource={Avatar} />
+            <label htmlFor="avatar">Upload an avatar:</label>
+            <input
+              type="file"
+              name="avatar"
+              onChange={e => setAvatar(e.target.value)}
+            />
+
+            <img src={userData.user.avatar} alt="Avatar" />
 
             <input type="submit" value="Update" />
           </form>

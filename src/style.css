@@ -1,7 +1,7 @@
 :root {
   --transition: all 0.4s ease;
-  --nav-color: #683fb5;
-  --darkest-color: #4e2f88;
+  --nav-color: #3f51b5;
+  --darkest-color: #2f3d88;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -75,6 +75,20 @@ body {
 .profile-card .avatar {
   max-width: 100px;
   max-height: 100px;
+}
+
+.home-image {
+  width: 100%;
+  max-width: 600px;
+}
+
+.home-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.home-section section h2 {
+  font-size: 3rem;
 }
 
 .container {
